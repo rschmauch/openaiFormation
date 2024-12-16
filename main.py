@@ -1,7 +1,8 @@
 from openai import OpenAI
+from env import OPENAI_API_KEY
 import streamlit as st
 
-client = OpenAI()
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 value = st.text_input("Requete")
 
