@@ -4,16 +4,34 @@ import streamlit as st
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-value = st.chat_input("Requete")
+generation, alteration = st.tabs(["Génération d'image","Altération d'image"])
 
-with st.chat_message("user"):
-    if (value):
-        txt = st.text("Waiting for API")
+with generation:
+    value = st.chat_input("Requete")
 
-        image = client.images.generate(
-            prompt=value,
-            model="dall-e-2",
-            n=1,
-            size="500x500")
+    with st.chat_message("user"):
+        if (value):
+            txt = st.text("Waiting for API")
 
-        txt.image(image.data[0].url)
+            image = client.images.generate(
+                prompt=value,
+                model="dall-e-2",
+                n=1,
+                size="512x512")
+
+            txt.image(image.data[0].url)
+
+with alteration:
+    value = st.file_uploader("Image")
+
+    with st.chat_message("user"):
+        if (value):
+            txt = st.text("Waiting for API")
+
+            image = client.images.create_variation(
+                image=value,
+                model="dall-e-2",
+                n=1,
+                size="512x512")
+
+            txt.image(image.data[0].url)
