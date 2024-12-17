@@ -1,17 +1,8 @@
-from openai import OpenAI
-from env import OPENAI_API_KEY
 import streamlit as st
 
-client = OpenAI(api_key=OPENAI_API_KEY)
-
-value = st.text_input("Requete")
-
-if (value):
-    txt = st.text("Waiting for API")
-
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role":"user","content":value}]
-    )
-
-    txt.text(completion.choices[0].message.content)
+path = "root/pages/"
+pg = st.navigation([
+        st.Page(path + "Base.py", title="Bases"),
+        st.Page(path + "DallE.py", title="Dall-E"),
+    ]) 
+pg.run()
