@@ -1,6 +1,8 @@
 from openai import OpenAI
-from env import OPENAI_API_KEY
 import streamlit as st
+
+if (not(OPENAI_API_KEY)):
+    from env import OPENAI_API_KEY
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 

@@ -1,5 +1,6 @@
 from openai import OpenAI
-from env import OPENAI_API_KEY
+if (not(OPENAI_API_KEY)):
+    from env import OPENAI_API_KEY
 import streamlit as st
 from pathlib import Path
 import os
