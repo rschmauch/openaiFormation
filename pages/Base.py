@@ -1,9 +1,6 @@
 from openai import OpenAI
 import streamlit as st
-
-try:
-    OPENAI_API_KEY
-except:
+if 'OPENAI_API_KEY' not in locals() and 'OPENAI_API_KEY' not in globals():
     from env import OPENAI_API_KEY
 
 client = OpenAI(api_key=OPENAI_API_KEY)

@@ -1,7 +1,5 @@
 from openai import OpenAI
-try:
-    OPENAI_API_KEY
-except:
+if 'OPENAI_API_KEY' not in locals() and 'OPENAI_API_KEY' not in globals():
     from env import OPENAI_API_KEY
 import streamlit as st
 
