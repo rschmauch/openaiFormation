@@ -8,7 +8,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 audio = st.audio_input("Requete")
 
-dir = Path(__file__).parent.parent / "files"
+dir = Path(__file__).parent / "files"
 
 try:
     os.mkdir(dir)
@@ -18,7 +18,7 @@ except:
           
 
 if (audio):
-    file_path = Path(__file__).parent.parent / "files/input.mp3"
+    file_path = Path(__file__).parent / "files/input.mp3"
 
     with open(file_path, "wb") as file:
         file.write(audio.getbuffer())
@@ -44,7 +44,7 @@ if (audio):
         input=answer
     )
 
-    file_path = Path(__file__).parent.parent / "files/output.mp3"
+    file_path = Path(__file__).parent / "files/output.mp3"
 
     response.stream_to_file(file_path)
 
